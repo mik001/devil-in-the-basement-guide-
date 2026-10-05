@@ -1,0 +1,6 @@
+# Vercel and build files
+.vercel
+node_modules/
+
+# Optional: do not upload the full RPG Maker game files to GitHub/Vercel
+地下室的恶魔/

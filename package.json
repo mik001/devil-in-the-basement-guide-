@@ -1,0 +1,16 @@
+{
+  "name": "the-devil-in-the-basement-guide",
+  "version": "1.0.0",
+  "description": "Guida interattiva e mappa delle route completa per Il Demone nel Seminterrato (地下室的恶魔)",
+  "scripts": {
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "guide",
+    "rpg-maker",
+    "walkthrough",
+    "devil-in-the-basement"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

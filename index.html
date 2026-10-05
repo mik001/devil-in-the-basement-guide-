@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Devil in the Basement — Mappa delle Route & Guida ai Finali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0c0e14;
+      --bg-card: rgba(22, 27, 34, 0.85);
+      --bg-card-hover: rgba(30, 38, 48, 0.95);
+      --border-color: rgba(248, 81, 73, 0.2);
+      --border-gold: rgba(234, 179, 8, 0.35);
+      --crimson: #e63946;
+      --crimson-glow: rgba(230, 57, 70, 0.35);
+      --blood: #b91c1c;
+      --gold: #f59e0b;
+      --gold-light: #fef08a;
+      --text-main: #e6edf3;
+      --text-muted: #8b949e;
+      --accent-blue: #38bdf8;
+      --accent-purple: #c084fc;
+      --accent-green: #4ade80;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(185, 28, 28, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(12, 14, 20, 0.9) 0%, #0c0e14 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(12, 14, 20, 0.85);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-icon {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 10px var(--crimson));
+    }
+
+    .brand-text h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-text h1 span {
+      color: var(--crimson);
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* NAV PILLS */
+    nav {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background: rgba(230, 57, 70, 0.15);
+      border-color: var(--crimson);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #fff;
+      box-shadow: 0 0 15px var(--crimson-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* SECTIONS */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO CARD */
+    .hero {
+      background: linear-gradient(135deg, rgba(30, 15, 20, 0.7) 0%, rgba(16, 20, 30, 0.8) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--crimson-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      background: rgba(230, 57, 70, 0.2);
+      border: 1px solid var(--crimson);
+      color: #ff8585;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      max-width: 900px;
+      font-size: 0.95rem;
+    }
+
+    .quick-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .stat-num {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* GRID LAYOUTS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: var(--border-color);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-romance {
+      background: rgba(244, 63, 94, 0.2);
+      border: 1px solid #f43f5e;
+      color: #fda4af;
+    }
+
+    .badge-bad {
+      background: rgba(185, 28, 28, 0.25);
+      border: 1px solid #b91c1c;
+      color: #fca5a5;
+    }
+
+    .badge-secret {
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid #a855f7;
+      color: #d8b4fe;
+    }
+
+    .badge-alone {
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid #0ea5e9;
+      color: #7dd3fc;
+    }
+
+    .badge-r18g {
+      background: rgba(220, 38, 38, 0.3);
+      border: 1px solid #dc2626;
+      color: #f87171;
+    }
+
+    /* FLOWCHART INTERACTIVE MAP */
+    .flowchart-container {
+      background: #090b10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      overflow-x: auto;
+      margin-bottom: 2rem;
+    }
+
+    .flow-step-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-nodes-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      min-width: 900px;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .flow-node {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      position: relative;
+    }
+
+    .flow-node:hover {
+      border-color: var(--crimson);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 15px rgba(230, 57, 70, 0.25);
+      transform: scale(1.02);
+    }
+
+    .flow-node.active-node {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+
+    .flow-node-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .flow-node-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .flow-node-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .flow-arrow {
+      color: var(--crimson);
+      font-weight: bold;
+      font-size: 1.2rem;
+      user-select: none;
+    }
+
+    /* NODE DETAILS MODAL / DRAWER */
+    .node-drawer {
+      background: rgba(22, 27, 34, 0.98);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      display: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .node-drawer.open {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* SIMULATOR / CALCULATOR */
+    .calc-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .calc-row {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 1.2rem;
+    }
+
+    .calc-label {
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .calc-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .calc-radio {
+      display: none;
+    }
+
+    .calc-option-label {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: block;
+    }
+
+    .calc-option-label:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .calc-radio:checked + .calc-option-label {
+      border-color: var(--gold);
+      background: rgba(245, 158, 11, 0.12);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .calc-option-title {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .calc-option-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .calc-result-box {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(20, 25, 35, 0.95) 0%, rgba(35, 15, 20, 0.95) 100%);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 1.8rem;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+    }
+
+    .calc-result-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.8rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+
+    .calc-result-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    /* TABLES */
+    .table-container {
+      overflow-x: auto;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .code-badge {
+      font-family: 'Fira Code', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      color: var(--accent-blue);
+      font-size: 0.78rem;
+    }
+
+    /* SEARCH BAR */
+    .search-wrapper {
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 0.8rem 1rem 0.8rem 2.6rem;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--crimson);
+      box-shadow: 0 0 10px var(--crimson-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 4rem;
+    }
+
+    /* STEP LIST */
+    .step-list {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+
+    .step-item {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.86rem;
+      color: #cbd5e1;
+    }
+
+    .step-item::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    /* DIALOGUE BOX */
+    .quote-box {
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 3px solid var(--crimson);
+      padding: 0.8rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.8rem 0;
+      font-style: italic;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+    }
+
+    .quote-cn {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: normal;
+      margin-top: 0.3rem;
+      font-family: sans-serif;
+    }
+
+    /* VERCEL CARD */
+    .deploy-card {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 25, 0.9) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .code-block {
+      background: #000;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #4ade80;
+      overflow-x: auto;
+      margin: 0.6rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">🩸</div>
+        <div class="brand-text">
+          <h1>The Devil in the Basement <span>[地下室的恶魔]</span></h1>
+          <p>Mappa Completa delle Route, Guida ai 6 Finali & Dossier Seguito</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn active" onclick="switchTab('tab-map', this)">🗺️ Mappa Interattiva</button>
+        <button class="nav-btn" onclick="switchTab('tab-endings', this)">🏆 I 6 Finali</button>
+        <button class="nav-btn" onclick="switchTab('tab-simulator', this)">🔮 Calcolatore Route</button>
+        <button class="nav-btn" onclick="switchTab('tab-chars', this)">👥 Personaggi & Quest</button>
+        <button class="nav-btn" onclick="switchTab('tab-switches', this)">🔍 Switch & Debug</button>
+        <button class="nav-btn" onclick="switchTab('tab-sequel', this)">📚 Il Seguito & Weizu</button>
+        <button class="nav-btn" onclick="switchTab('tab-deploy', this)">☁️ Hosting Vercel</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO INTRO -->
+    <div class="hero">
+      <div class="hero-badge">Bara BL RPG Maker MV • Autore: 威族 (Weizu)</div>
+      <h2>Guida Strategica & Enciclopedia delle Route</h2>
+      <p>Questa applicazione web interattiva analizza la struttura del codice RPG Maker di <strong>《地下室的恶魔》</strong> (The Demon in the Basement). Scopri tutti i requisiti per i 6 finali ufficiali, calcola le tue scelte in tempo reale e consulta la cronologia delle opere dell'autore.</p>
+      <div class="quick-stats">
+        <div class="stat-pill"><span class="stat-num">6</span> Finali Ufficiali</div>
+        <div class="stat-pill"><span class="stat-num">3</span> Protagonisti Romantici / Vittime</div>
+        <div class="stat-pill"><span class="stat-num">2</span> Vie di Risoluzione (Romantica vs R18-G)</div>
+        <div class="stat-pill"><span class="stat-num">1</span> Finale Segreto di Ascensione</div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 1: MAPPA DELLE ROUTE ==================== -->
+    <div id="tab-map" class="tab-content active">
+      <div class="flowchart-container">
+        <div class="flow-step-title">🧭 Mappa dei Flussi di Gioco (Clicca su un blocco per visualizzare i dettagli completi)</div>
+        
+        <div class="flow-nodes-wrapper">
+          <!-- STEP 1: PROLOGO -->
+          <div class="flow-row">
+            <div class="flow-node" onclick="showNodeDetails('prologue')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">1. Prologo: La Morte dello Zio Owen</span>
+                <span class="card-badge badge-romance">Mappa 003 / 005</span>
+              </div>
+              <p class="flow-node-desc">Owenxiu (欧文修) muore misteriosamente. Nel seminterrato incontri il demone Valembert (瓦伦伯特). Patto: 200ml di seme da 3 uomini per resuscitarlo.</p>
+            </div>
+          </div>
+
+          <div style="text-align:center; color:var(--crimson); font-size:1.5rem;">↓</div>
+
+          <!-- STEP 2: LE 3 ROUTE DEI CANDIDATI -->
+          <div class="flow-row">
+            <!-- RUTE -->
+            <div class="flow-node" onclick="showNodeDetails('rute')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">🔨 Route Rute (鲁特 - Fabbro)</span>
+                <span class="card-badge badge-romance">Mappa 009</span>
+              </div>
+              <p class="flow-node-desc"><strong>Bivio:</strong><br>• Via Dolce: Trova l'anello nuziale nella foresta + Ammaloa.<br>• Via R18G: Il demone amputa Rute (Switch 11).</p>
+            </div>
+
+            <div class="flow-arrow">↔</div>
+
+            <!-- SAIN -->
+            <div class="flow-node" onclick="showNodeDetails('sain')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">🎖️ Route Sain (塞恩 - Ufficiale)</span>
+                <span class="card-badge badge-romance">Mappa 021 / 048</span>
+              </div>
+              <p class="flow-node-desc"><strong>Bivio:</strong><br>• Via Dolce: Risolvi crisi 4000G + Bosco Streghe + Disintossica.<br>• Via R18G: Schiavizzato come cane da guardia (Switch 57).</p>
+            </div>
+
+            <div class="flow-arrow">↔</div>
+
+            <!-- VIGAS -->
+            <div class="flow-node" onclick="showNodeDetails('vigas')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">🥊 Route Vigas (维格斯 - Pugile)</span>
+                <span class="card-badge badge-romance">Mappa 023 / 034</span>
+              </div>
+              <p class="flow-node-desc"><strong>Bivio:</strong><br>• Via Dolce: Trova 2 Felci Viola + Cura la sorella Fenner.<br>• Via R18G: Catturato dai tentacoli parassiti (Switch 86).</p>
+            </div>
+          </div>
+
+          <div style="text-align:center; color:var(--crimson); font-size:1.5rem;">↓</div>
+
+          <!-- STEP 3: BIVIO CRUCIALE -->
+          <div class="flow-row">
+            <!-- CHECKPOINT DEMONE / BAD ENDING -->
+            <div class="flow-node" style="border-color: #b91c1c;" onclick="showNodeDetails('bad_ending_gate')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">💀 Checkpoint Seminterrato: Condizione Bad Ending</span>
+                <span class="card-badge badge-bad">Switch 11 + 57 + 86 ON</span>
+              </div>
+              <p class="flow-node-desc">Se hai scelto la crudeltà per <strong>tutti e tre gli uomini</strong>, Valembert si trasforma nel Grande Demone di Lussuria & Ira (Asmodeus + Samael) e distrugge Wave Town.</p>
+            </div>
+
+            <div class="flow-arrow">OPPURE</div>
+
+            <!-- CHECKPOINT NORMALE -->
+            <div class="flow-node" style="border-color: #4ade80;" onclick="showNodeDetails('normal_revival')">
+              <div class="flow-node-header">
+                <span class="flow-node-title">✨ Resurrezione di Owen & Partenza</span>
+                <span class="card-badge badge-romance">Switch 141 & 142 ON</span>
+              </div>
+              <p class="flow-node-desc">Owen viene rianimato con il membro riattaccato. Simula l'incidente con la carrozza. Emily timbra il foglio di via. Si aprono i 4 Finali Normali al cancello.</p>
+            </div>
+          </div>
+
+          <div style="text-align:center; color:var(--crimson); font-size:1.5rem;">↓</div>
+
+          <!-- STEP 4: I 6 FINALI -->
+          <div class="flow-row">
+            <div class="flow-node" onclick="showNodeDetails('end1')">
+              <span class="card-badge badge-alone">NO: 1</span> <strong>旅途 (Il Viaggio)</strong><br><small>Parti da solo senza nessun partner</small>
+            </div>
+            <div class="flow-node" onclick="showNodeDetails('end2')">
+              <span class="card-badge badge-romance">NO: 2</span> <strong>军旅生涯 (Carriera Militare)</strong><br><small>Parti con l'esercito e Sain</small>
+            </div>
+            <div class="flow-node" onclick="showNodeDetails('end3')">
+              <span class="card-badge badge-romance">NO: 3</span> <strong>故乡 (Città Natale)</strong><br><small>Rimani a Wave Town con Rute</small>
+            </div>
+            <div class="flow-node" onclick="showNodeDetails('end4')">
+              <span class="card-badge badge-romance">NO: 4</span> <strong>冒险者的梦 (Sogno Avventuriero)</strong><br><small>Parti sul carro con Vigas e Fenner</small>
+            </div>
+            <div class="flow-node" style="border-color:#b91c1c;" onclick="showNodeDetails('end5')">
+              <span class="card-badge badge-bad">NO: 5</span> <strong>湮灭 (Annientamento)</strong><br><small>Ucciso dal Demone Asmodeus/Samael</small>
+            </div>
+            <div class="flow-node" style="border-color:#a855f7;" onclick="showNodeDetails('end6')">
+              <span class="card-badge badge-secret">NO: 6</span> <strong>升华 (Ascensione)</strong><br><small>Portale segreto Grotte di Ghiaccio</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DRAWER DINAMICO DETTAGLI NODO -->
+      <div id="node-details" class="node-drawer">
+        <div id="node-details-content">
+          <!-- Inserito dinamicamente da JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: I 6 FINALI ==================== -->
+    <div id="tab-endings" class="tab-content">
+      <div class="grid-2">
+        
+        <!-- FINALE 1 -->
+        <div class="card">
+          <div class="card-title">
+            <span>NO: 1 — 旅途 (Il Viaggio)</span>
+            <span class="card-badge badge-alone">Finale Solitario</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Kak decide di non legarsi sentimentalmente a nessuno dei tre uomini. Prende il lasciapassare approvato da Emily e si avvia verso il mondo esterno da solo, libero dall'incubo del demone.</p>
+          <div class="quote-box">
+            "自那天起，再也没有人看见过卡克。少年往自己向往的地方不停地旅行。他没有停下自己的脚步，因为他知道：要自己追寻未来的方向。"
+            <div class="quote-cn">«Da quel giorno, nessuno vide più Kak. Il giovane continuò a viaggiare verso i luoghi che desiderava, senza mai fermarsi, perché sapeva di dover forgiare da solo il proprio destino.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Non attivare la Bad Ending (non fare tutte e 3 le vie R18G).</li>
+            <li class="step-item">Resuscita Owen nel seminterrato ed esci con il timbro di Emily (Switch 142 ON).</li>
+            <li class="step-item">Al cancello di Wave Town, non parlare con Sain né con Vigas, e non tornare dal fabbro: parla direttamente con la guardia al varco.</li>
+          </ul>
+        </div>
+
+        <!-- FINALE 2 -->
+        <div class="card">
+          <div class="card-title">
+            <span>NO: 2 — 军旅生涯 (Carriera Militare)</span>
+            <span class="card-badge badge-romance">Route Sain (塞恩)</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Kak si unisce all'esercito come soldato e compagno fedele dell'ufficiale Sain. I due affrontano le asperità della guerra insieme, uniti da una forte passione, finché all'orizzonte non riappare una sinistra ombra rossa...</p>
+          <div class="quote-box">
+            "塞恩拍了拍你的肩，两人用很微妙的眼神对视着对方。你明白，你们俩远远不止是士兵和长官的关系。"
+            <div class="quote-cn">«Sain ti posò una mano sulla spalla; i vostri sguardi si incrociarono. Sapevate entrambi che il vostro legame andava ben oltre quello tra soldato e comandante.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Risolvi la crisi finanziaria (4000G) e purifica Sain dal veleno nel Villaggio delle Streghe.</li>
+            <li class="step-item">Dichiara i tuoi sentimenti reciproci (Switch 82 ON).</li>
+            <li class="step-item">Dopo il timbro di Emily, recati all'accampamento/uscita e dichiara a Sain di voler arruolarti al suo fianco.</li>
+          </ul>
+        </div>
+
+        <!-- FINALE 3 -->
+        <div class="card">
+          <div class="card-title">
+            <span>NO: 3 — 故乡 (Città Natale / Casa)</span>
+            <span class="card-badge badge-romance">Route Rute (鲁特)</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Kak rinuncia a partire e decide di rimanere per sempre a Wave Town con il fabbro Rute. I due lavorano insieme nell'officina e vivono come amanti in una dolce quotidianità domestica.</p>
+          <div class="quote-box">
+            "鲁特：俺都听你的，只要你不后悔就行。毕竟俺说好要好好回应你的感情了。和自己一直以来很爱的人。"
+            <div class="quote-cn">«Rute: "Farò come vuoi, basta che tu non te ne penta. Dopotutto ho promesso di ricambiare i tuoi sentimenti." Con la persona che hai sempre amato.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Recupera l'anello nuziale nella foresta (森林戒指) e donalo a Rute per rompere le sue difese.</li>
+            <li class="step-item">Partecipa al banchetto serale con il vino di Osmanto (桂花酒) e completa la seconda notte con lui.</li>
+            <li class="step-item">Ottenuto il lasciapassare (Switch 142 ON), NON uscire dalla città: torna da Rute nella bottega e scegli di restare con lui.</li>
+          </ul>
+        </div>
+
+        <!-- FINALE 4 -->
+        <div class="card">
+          <div class="card-title">
+            <span>NO: 4 — 冒险者的梦 (Il Sogno dell'Avventuriero)</span>
+            <span class="card-badge badge-romance">Route Vigas (维格斯)</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Kak, Vigas e la sorellina guarita Fenner salgono su un grande carro da viaggio e partono per esplorare terre lontane come una vera famiglia di avventurieri erranti.</p>
+          <div class="quote-box">
+            "维格斯：.....我是认真的，有你我就满足了。你：......我爱你，维格斯。这场冒险也许会一直持续下去，创造未来。"
+            <div class="quote-cn">«Vigas: "Dico sul serio, finché ci sei tu non desidero altro." Kak: "Ti amo, Vigas." Un'avventura destinata a continuare per creare il vostro futuro insieme.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Esplora la Foresta degli Elfi e il Castello per raccogliere le 2 piante di Felce Viola (紫苏灵蕨).</li>
+            <li class="step-item">Cura Fenner, goditi il massaggio allo slime con Vigas e la bevuta nella taverna.</li>
+            <li class="step-item">Al momento della partenza (Switch 142 ON), parla con Vigas vicino al carro a nord della città e parti con lui.</li>
+          </ul>
+        </div>
+
+        <!-- FINALE 5 -->
+        <div class="card" style="border-color: rgba(185, 28, 28, 0.4);">
+          <div class="card-title">
+            <span style="color:#f87171;">NO: 5 — 湮灭 (Annientamento / Oblio)</span>
+            <span class="card-badge badge-bad">Bad Ending del Demone</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Se Kak cede alla via oscura in ogni occasione, Valembert assorbe l'apice dell'energia di Lussuria e Sadismo. Rivela la sua identità di fusione tra Asmodeus e Samael, incenerisce Wave Town e squarta Kak.</p>
+          <div class="quote-box" style="border-color:#b91c1c;">
+            "你的胸膛被瓦伦伯特撕开了。卡克的意识逐渐被黑暗吞噬... 所有的记忆停留在了那个血红的小镇中。无人幸免。"
+            <div class="quote-cn">«Valembert ti spalancò il torace. La coscienza di Kak venne inghiottita dall'oscurità... Ogni ricordo rimase intrappolato in quel borgo tinto di sangue. Nessun sopravvissuto.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Fabbro Rute: Scegli l'aiuto del demone -> amputato e reso bestia da latte (Switch 11 ON).</li>
+            <li class="step-item">Ufficiale Sain: Scegli la sottomissione -> trasformato in cane da guardia (Switch 57 ON).</li>
+            <li class="step-item">Pugile Vigas: Lascialo catturare dai tentacoli -> usato come incubatore di uova (Switch 86 ON).</li>
+            <li class="step-item">Nel seminterrato (Mappa 008) interagisci con il corpo: scatta la sequenza catastrofica irreversibile (Switch 140/149/150).</li>
+          </ul>
+        </div>
+
+        <!-- FINALE 6 -->
+        <div class="card" style="border-color: rgba(168, 85, 247, 0.4);">
+          <div class="card-title">
+            <span style="color:#c084fc;">NO: 6 — 升华 (Ascensione / Sublimazione)</span>
+            <span class="card-badge badge-secret">True / Secret Ending</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Rompendo il ciclo del seminterrato, Kak penetra nelle profondità ghiacciate della miniera e scopre il Santuario degli Elfi Sacri. Valembert viene strappato dal suo corpo e Kak ascende al cosmo come spirito di luce stellare.</p>
+          <div class="quote-box" style="border-color:#a855f7;">
+            "卡克感到自己完全漂浮于空中。此刻，他正处于一片无垠的星空之中... 每个生命都是一颗闪耀的星星。安静的沉睡吧，我们的孩子，在飘渺的繁星中。"
+            <div class="quote-cn">«Kak si sentì fluttuare nel vuoto. Si trovava in mezzo a una distesa sconfinata di stelle... Ogni vita è un astro splendente. Riposa in pace, figlio nostro, tra le stelle eteree.»</div>
+          </div>
+          <ul class="step-list">
+            <li class="step-item">Entra nella Miniera (Mappa 013) ed esplora le Grotte di Ghiaccio (冰窟 -> 冰窟中部 -> 冰窟深处).</li>
+            <li class="step-item">Trova la sala segreta (Mappa 018: ？？？). Ignora il monito spaventato di Valembert e varca il portale.</li>
+            <li class="step-item">Nel Santuario (Mappa 085), la sacerdotessa Fenina purifica Kak (Switch 151/152 ON).</li>
+            <li class="step-item">(Opzionale) Visita la Torre (Mappa 086) dove Valembert è imprigionato. Parla con Fenina e inizia il rituale stellare.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: CALCOLATORE ROUTE ==================== -->
+    <div id="tab-simulator" class="tab-content">
+      <div class="calc-box">
+        <h3 style="font-family:'Cinzel',serif; font-size:1.4rem; color:var(--gold); margin-bottom:1.5rem;">🔮 Simulatore Interattivo delle Decisioni</h3>
+        
+        <!-- DOMANDA 1: RUTE -->
+        <div class="calc-row">
+          <div class="calc-label">🔨 1. Come gestisci il Fabbro Rute (鲁特)?</div>
+          <div class="calc-options">
+            <div>
+              <input type="radio" id="rute_good" name="calc_rute" class="calc-radio" value="good" checked onchange="calculateRoute()">
+              <label for="rute_good" class="calc-option-label">
+                <div class="calc-option-title">💚 Via Romantica / Comprensione</div>
+                <div class="calc-option-sub">Trova l'anello nuziale, usa la fascinazione con delicatezza e partecipa alla cena.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="rute_bad" name="calc_rute" class="calc-radio" value="bad" onchange="calculateRoute()">
+              <label for="rute_bad" class="calc-option-label">
+                <div class="calc-option-title">🩸 Aiuto Demoniaco R18-G (Switch 11)</div>
+                <div class="calc-option-sub">Lascia che Valembert amputi i 4 arti di Rute per tenerlo nel seminterrato.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMANDA 2: SAIN -->
+        <div class="calc-row">
+          <div class="calc-label">🎖️ 2. Come gestisci l'Ufficiale Sain (塞恩)?</div>
+          <div class="calc-options">
+            <div>
+              <input type="radio" id="sain_good" name="calc_sain" class="calc-radio" value="good" checked onchange="calculateRoute()">
+              <label for="sain_good" class="calc-option-label">
+                <div class="calc-option-title">💚 Via Romantica / Lealtà</div>
+                <div class="calc-option-sub">Raccogli 4000G per la crisi, purificalo dal veleno nel Bosco delle Streghe.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="sain_bad" name="calc_sain" class="calc-radio" value="bad" onchange="calculateRoute()">
+              <label for="sain_bad" class="calc-option-label">
+                <div class="calc-option-title">🩸 Cane da Guardia Demoniaco R18-G (Switch 57)</div>
+                <div class="calc-option-sub">Il demone lo piega e lo trasforma in un segugio umano legato al collare.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMANDA 3: VIGAS -->
+        <div class="calc-row">
+          <div class="calc-label">🥊 3. Come gestisci il Pugile Vigas (维格斯)?</div>
+          <div class="calc-options">
+            <div>
+              <input type="radio" id="vigas_good" name="calc_vigas" class="calc-radio" value="good" checked onchange="calculateRoute()">
+              <label for="vigas_good" class="calc-option-label">
+                <div class="calc-option-title">💚 Via Romantica / Fratellanza</div>
+                <div class="calc-option-sub">Raccogli le 2 felci viola nella foresta elfica e salva sua sorella Fenner.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="vigas_bad" name="calc_vigas" class="calc-radio" value="bad" onchange="calculateRoute()">
+              <label for="vigas_bad" class="calc-option-label">
+                <div class="calc-option-title">🩸 Nido di Tentacoli R18-G (Switch 86)</div>
+                <div class="calc-option-sub">Vigas viene catturato e parassitato per covare uova nel seminterrato.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMANDA 4: PORTALE SEGRETO -->
+        <div class="calc-row">
+          <div class="calc-label">🌌 4. Hai esplorato la Grotta di Ghiaccio (Mappa 018: ？？？)?</div>
+          <div class="calc-options">
+            <div>
+              <input type="radio" id="cave_no" name="calc_cave" class="calc-radio" value="no" checked onchange="calculateRoute()">
+              <label for="cave_no" class="calc-option-label">
+                <div class="calc-option-title">🚶 No / Non ho varcato il portale</div>
+                <div class="calc-option-sub">Segui il normale corso della storia nel villaggio e col demone Valembert.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="cave_yes" name="calc_cave" class="calc-radio" value="yes" onchange="calculateRoute()">
+              <label for="cave_yes" class="calc-option-label">
+                <div class="calc-option-title">⭐ Sì, sono entrato nel Portale del Santuario</div>
+                <div class="calc-option-sub">Hai ignorato il demone ed evocato la protezione della sacerdotessa Fenina.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMANDA 5: SCELTA PARTENZA -->
+        <div class="calc-row">
+          <div class="calc-label">🚪 5. Al cancello di Wave Town (con permesso firmato da Emily), chi scegli?</div>
+          <div class="calc-options">
+            <div>
+              <input type="radio" id="exit_sain" name="calc_exit" class="calc-radio" value="sain" checked onchange="calculateRoute()">
+              <label for="exit_sain" class="calc-option-label">
+                <div class="calc-option-title">🎖️ Parla con Sain</div>
+                <div class="calc-option-sub">Ti arruoli nella sua armata.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="exit_vigas" name="calc_exit" class="calc-radio" value="vigas" onchange="calculateRoute()">
+              <label for="exit_vigas" class="calc-option-label">
+                <div class="calc-option-title">🥊 Parla con Vigas</div>
+                <div class="calc-option-sub">Sali sul carro con Vigas e Fenner.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="exit_rute" name="calc_exit" class="calc-radio" value="rute" onchange="calculateRoute()">
+              <label for="exit_rute" class="calc-option-label">
+                <div class="calc-option-title">🔨 Torna nella bottega di Rute</div>
+                <div class="calc-option-sub">Rinunci a partire per restare con lui.</div>
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="exit_alone" name="calc_exit" class="calc-radio" value="alone" onchange="calculateRoute()">
+              <label for="exit_alone" class="calc-option-label">
+                <div class="calc-option-title">🎒 Parla solo con la guardia al cancello</div>
+                <div class="calc-option-sub">Parti da solo per il mondo.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- RISULTATO CALCOLATORE -->
+        <div class="calc-result-box" id="calc-result-display">
+          <!-- Inserito dinamicamente da JS -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: PERSONAGGI & QUEST ==================== -->
+    <div id="tab-chars" class="tab-content">
+      <div class="grid-3">
+        
+        <!-- KAK -->
+        <div class="card">
+          <div class="card-title">
+            <span>Kak (卡克)</span>
+            <span class="card-badge badge-alone">Protagonista</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Giovane orfano allevato dallo zio Owen. Alla morte improvvisa di quest'ultimo, scopre il misterioso demone nel seminterrato e apprende l'arte proibita della fascinazione per raccogliere l'essenza vitale maschile.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Competenze:</strong> Magia di Fascinazione (魅惑术), Raccolta Seme, Falso Incidente.
+          </div>
+        </div>
+
+        <!-- VALEMBERT -->
+        <div class="card">
+          <div class="card-title">
+            <span style="color:#f87171;">Valembert (瓦伦伯特)</span>
+            <span class="card-badge badge-bad">Demone / Nemico</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Un'entità demoniaca sigillata nel seminterrato che promette la resurrezione di Owen. In realtà incarna l'essenza congiunta di Asmodeus (Lussuria) e Samael (Crudeltà e Ira). Brama il sangue e la corruzione del paese.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Negozio Segreto:</strong> Vende armi oscure e pergamene in cambio di fluido seminale.
+          </div>
+        </div>
+
+        <!-- RUTE -->
+        <div class="card">
+          <div class="card-title">
+            <span>Rute (鲁特)</span>
+            <span class="card-badge badge-romance">Fabbro</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Un fabbro muscoloso, rude ma di indole generosa e protettiva. Addolorato per la scomparsa della defunta moglie, custodisce un lato profondamente tenero e sensibile se gli viene restituito il suo anello.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Oggetti Chiave:</strong> Anello della Foresta (森林戒指), Vino di Osmanto (桂花酒).
+          </div>
+        </div>
+
+        <!-- SAIN -->
+        <div class="card">
+          <div class="card-title">
+            <span>Sain (塞恩)</span>
+            <span class="card-badge badge-romance">Ufficiale Militare</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Comandante carismatico e autorevole dell'accampamento militare. Difende con lealtà i propri uomini, ma è oppresso dai debiti di guerra (4000G) e dalle maledizioni occulte della foresta nebbiosa.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Quest Chiave:</strong> Debito Militare (4000G), Purificazione Veleno della Strega (帮塞恩解毒).
+          </div>
+        </div>
+
+        <!-- VIGAS -->
+        <div class="card">
+          <div class="card-title">
+            <span>Vigas (维格斯)</span>
+            <span class="card-badge badge-romance">Lottatore / Pugile</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Combattente del torneo locale con pugni d'acciaio e corpo temprato. Dietro la sua scorza fiera combatte per procurare i costosi rimedi medicinali per la sorellina inferma Fenner.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Quest Chiave:</strong> Le 2 Felci Viola (紫苏灵蕨), Scontro nella Taverna (酒馆谈话).
+          </div>
+        </div>
+
+        <!-- FENINA -->
+        <div class="card">
+          <div class="card-title">
+            <span style="color:#c084fc;">Fenina (菲尼娜)</span>
+            <span class="card-badge badge-secret">Elfa Sacra</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.8rem;">Spirito guardiano dell'antico reame elfico sepolto nelle viscere glaciali di Wave Town. Riconosce la purezza di Kak e gli offre la liberazione totale dal vincolo demoniaco attraverso il battesimo stellare.</p>
+          <div style="font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            <strong>Ubicazione:</strong> Santuario Sacro (Mappa 085: 圣域), raggiungibile da Mappa 018.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== TAB 5: SWITCH & DEBUG ==================== -->
+    <div id="tab-switches" class="tab-content">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="switch-search" class="search-input" placeholder="Cerca Switch per ID, nome cinese o descrizione italiana..." oninput="filterSwitches()">
+      </div>
+
+      <div class="table-container">
+        <table id="switch-table">
+          <thead>
+            <tr>
+              <th style="width:80px;">Switch ID</th>
+              <th>Nome Originale (Cinese)</th>
+              <th>Funzione / Descrizione Narrativa</th>
+              <th style="width:120px;">Tipo Evento</th>
+            </tr>
+          </thead>
+          <tbody id="switch-tbody">
+            <!-- Popolato dinamicamente da JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 6: IL SEGUITO & WEIZU ==================== -->
+    <div id="tab-sequel" class="tab-content">
+      <div class="card" style="margin-bottom:2rem; border-color:var(--gold);">
+        <div class="card-title" style="color:var(--gold-light);">
+          <span>❓ Esiste un seguito diretto: "The Devil in the Basement 2"?</span>
+          <span class="card-badge badge-secret">Risposta Ufficiale</span>
+        </div>
+        <p style="font-size:0.95rem; margin-bottom:0.8rem;">
+          <strong>No, non esiste alcun "The Devil in the Basement 2" né un seguito con i personaggi di Kak, Sain, Vigas o Rute.</strong>
+        </p>
+        <p style="color:var(--text-muted); font-size:0.9rem;">
+          L'opera 《地下室的恶魔》 è stata concepita e pubblicata dallo sviluppatore <strong>威族 (Weizu / Weizu V)</strong> come un titolo unico, autoconclusivo ed esaustivo, con i suoi 6 finali che completano tutte le ramificazioni della storia.
+        </p>
+      </div>
+
+      <h3 style="font-family:'Cinzel',serif; font-size:1.4rem; color:#fff; margin-bottom:1.2rem;">🚀 La Vera Saga Successiva dell'Autore: 《荒兰岛》 (Huanglan Dao)</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+        Dopo questo gioco, l'autore Weizu ha convogliato tutta la propria produzione nella sua opera magna Bara / BL RPG: la celebre saga <strong>《荒兰岛》 (Huanglan Dao / Island of Desolation)</strong>, composta da due capitoli principali:
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>荒兰岛 1 (Huanglan Dao 1)</span>
+            <span class="card-badge badge-romance">RPG Maker BL / Sci-Fi</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.8rem;">
+            Ambientato in un futuro post-apocalittico e distopico, il protagonista si risveglia dopo essere stato modificato e potenziato ciberneticamente. Esplora un'isola desolata popolata da scienziati muscolosi, predoni e mutanti.
+          </p>
+          <ul class="step-list">
+            <li class="step-item">Combattimenti a turni strategici con motore RPG Maker.</li>
+            <li class="step-item">Contenuti Bara maturi con opzione nelle impostazioni per filtrare i contenuti splatter/R18G.</li>
+            <li class="step-item">Password universale archivi dell'autore: <code class="code-badge">weizu</code>.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>荒兰岛 2：幻之章 (Huanglan Dao 2)</span>
+            <span class="card-badge badge-secret">Il Seguito Ufficiale</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.8rem;">
+            Il capitolo successivo e più esteso della serie. Amplia la narrazione con lo scontro politico e bellico tra le fazioni dell'Esercito Regolare e la Chiesa fanatica, con dozzine di nuove quest ed eroi.
+          </p>
+          <ul class="step-list">
+            <li class="step-item">Profondo ampliamento della lore e dei bivi narrativi.</li>
+            <li class="step-item">Nuove illustrazioni e scene animate originali di Weizu.</li>
+            <li class="step-item">Distribuito sui circuiti Perohub e forum GameMale.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:2rem;">
+        <div class="card-title">
+          <span>📡 Canali di Riferimento Ufficiali dell'Autore</span>
+          <span class="card-badge badge-alone">Community & Download</span>
+        </div>
+        <div style="font-size:0.88rem; color:var(--text-muted); line-height:1.8;">
+          • <strong>Contatto Ufficiale Autore:</strong> QQ ID <code class="code-badge">2022613738</code> (menzionato nei crediti ufficiali di fine gioco a Map061).<br>
+          • <strong>Piattaforme di Pubblicazione:</strong> Perohub / Pero.app (sotto il profilo <em>威族V</em>).<br>
+          • <strong>Community & Guide:</strong> Forum GameMale (ampia sezione con salvataggi, mod e discussioni strategiche).
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 7: HOSTING SU VERCEL ==================== -->
+    <div id="tab-deploy" class="tab-content">
+      <div class="deploy-card">
+        <h3 style="font-family:'Cinzel',serif; font-size:1.4rem; color:var(--accent-blue); margin-bottom:0.8rem;">☁️ Come Ospitare questa Web App su Vercel (Gratis in 60 Secondi)</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+          Questa applicazione è già configurata al 100% per il deploy su Vercel con un singolo comando o collegando la repository GitHub. Sono già stati creati i file di configurazione <code class="code-badge">vercel.json</code> e <code class="code-badge">package.json</code>.
+        </p>
+
+        <h4 style="color:#fff; font-size:1rem; margin-bottom:0.5rem;">Metodo 1: Deploy Diretto da Riga di Comando (Consigliato)</h4>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Apri PowerShell nella cartella del progetto ed esegui:</p>
+        <div class="code-block">npx vercel</div>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.4rem;">
+          Segui i 3 semplici passaggi a schermo (premi Invio per accettare le impostazioni predefinite). Al termine riceverai istantaneamente il tuo link pubblico live (es. <code>https://the-devil-in-the-basement-guide.vercel.app</code>)!
+        </p>
+
+        <h4 style="color:#fff; font-size:1rem; margin-top:1.5rem; margin-bottom:0.5rem;">Metodo 2: Tramite GitHub e Vercel Dashboard</h4>
+        <ol style="margin-left:1.5rem; color:var(--text-muted); font-size:0.88rem; line-height:1.8;">
+          <li>Carica i file di questa cartella su una repository GitHub (il file <code>.gitignore</code> esclude automaticamente i file pesanti di gioco).</li>
+          <li>Accedi a <a href="https://vercel.com" target="_blank" style="color:var(--accent-blue); text-decoration:none;">vercel.com</a> e clicca su <strong>"Add New Project"</strong>.</li>
+          <li>Importa la repository GitHub e clicca su <strong>"Deploy"</strong>.</li>
+        </ol>
+
+        <div style="background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.3); border-radius:8px; padding:1rem; margin-top:1.5rem; font-size:0.85rem; color:#bae6fd;">
+          💡 <strong>Puoi usarla anche subito offline:</strong> Ti basta fare doppio click sul file <code>index.html</code> per aprirlo immediatamente nel tuo browser preferito (Chrome, Edge, Firefox) con tutte le funzionalità interattive attive al 100%!
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>The Devil in the Basement (地下室的恶魔) — Guida Completa & Mappa Strategica.</p>
+    <p style="margin-top:0.4rem; font-size:0.75rem;">Opera originale creata da <strong>威族 (Weizu)</strong>. Guida interattiva sviluppata per consultazione e archivio.</p>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // DATA: NODES DETAILS
+    const nodeDetailsData = {
+      prologue: {
+        title: "Prologo & Patto Iniziale nel Seminterrato",
+        badge: "Inizio Storia",
+        desc: "Dopo la notizia della morte dello zio Owenxiu (欧文修), Kak trova il demone Valembert nel seminterrato. Per attuare il rituale di resurrezione occorre raccogliere 200ml di seme ciascuno da 3 uomini di alta prestanza fisica.",
+        items: "Nessun prerequisito.",
+        switches: "Switch 1 (恶魔降临), Switch 6 (欧文修之死), Switch 8 (学习了魅惑术).",
+        actions: "Impara la Magia di Fascinazione e inizia l'esplorazione di Wave Town."
+      },
+      rute: {
+        title: "Route Fabbro Rute (鲁特)",
+        badge: "Mappa 009 (铁匠铺)",
+        desc: "Rute è nella sua bottega a est. Se provi a usare subito la magia di fascinazione, le sue difese mentali lo bloccano.",
+        items: "Anello della Foresta (森林戒指, Oggetto 24), Vino di Osmanto (桂花酒, Oggetto 21).",
+        switches: "Romantica: Switch 13 (攻略铁匠线), Switch 19 (诱惑铁匠成功), Switch 137 (鲁特的精液).<br>Crudele: Switch 11 (截肢铁匠).",
+        actions: "<strong>Via Dolce:</strong> Parla con Marisa, trova l'anello nella foresta, consegnalo a Rute, completa la prima mungitura e poi la cena romantica.<br><strong>Via R18G:</strong> Scegli di far intervenire il demone. Rute subisce l'amputazione dei 4 arti e viene chiuso nel seminterrato."
+      },
+      sain: {
+        title: "Route Ufficiale Sain (塞恩)",
+        badge: "Mappa 021 (军队营地)",
+        desc: "L'ufficiale Sain è nell'accampamento militare a est. È tormentato dalla crisi finanziaria dell'esercito e dalle minacce occulte.",
+        items: "4000 Monete d'Oro (4000G), Cibo e Vino per i soldati.",
+        switches: "Romantica: Switch 35 (军队财政危机), Switch 45 (第一次做爱), Switch 79/80 (帮塞恩解毒), Switch 138 (塞恩的精液).<br>Crudele: Switch 57 (塞恩变成军犬).",
+        actions: "<strong>Via Dolce:</strong> Raccogli 4000G per salvarlo dal debito. Affronta la missione al Villaggio delle Streghe, spezza l'incubo e purificalo dal veleno.<br><strong>Via R18G:</strong> Lascia che il demone lo punisca: Sain viene ridotto a cane da guardia con collare nel seminterrato."
+      },
+      vigas: {
+        title: "Route Pugile Vigas (维格斯)",
+        badge: "Mappa 023 (武斗馆)",
+        desc: "Vigas vince il torneo nella sala d'armi, ma sua sorella Fenner è a letto con una malattia mortale.",
+        items: "2x Felce Viola di Perilla (紫苏灵蕨), Slime medicinale.",
+        switches: "Romantica: Switch 103/126 (紫苏灵蕨), Switch 109 (摸了史莱姆), Switch 131 (芬纳恢复), Switch 139 (维格斯的精液).<br>Crudele: Switch 86 (维格斯被触手抓住).",
+        actions: "<strong>Via Dolce:</strong> Esplora la Foresta Elfica e il Castello del Re Elfo, trova le 2 felci viola, prepara la cura per Fenner e condividi l'intimità con Vigas.<br><strong>Via R18G:</strong> Nella foresta corrotta viene catturato dalle creature tentacolari e usato per deporre parassiti nel seminterrato."
+      },
+      bad_ending_gate: {
+        title: "Bivio Bad Ending: Risveglio di Asmodeus e Samael",
+        badge: "Condizione Catastrofica",
+        desc: "Se tutti e 3 gli uomini sono stati distrutti e ridotti a schiavi/oggetti nel seminterrato, Valembert ha raggiunto il livello massimo di essenza sadica e lussuriosa.",
+        items: "Switch 11 ON (Rute amputato) + Switch 57 ON (Sain cane) + Switch 86 ON (Vigas tentacoli).",
+        switches: "Switch 140 (恶魔坏结局), Switch 149, Switch 150.",
+        actions: "Interagire con il corpo di Owen nel seminterrato fa scattare l'annientamento di Wave Town e la morte di Kak (Finale NO: 5 湮灭)."
+      },
+      normal_revival: {
+        title: "Bivio Normale: Resurrezione di Owen e Partenza",
+        badge: "Condizione Finali Normali",
+        desc: "Se almeno uno degli uomini è stato salvato e hai i 3 campioni di seme, puoi completare il rituale nel seminterrato riattaccando il membro dello zio.",
+        items: "Pene conservato di Owen, 3 fiale di seme.",
+        switches: "Switch 141 (欧文修复活开启), Switch 142 (正常结局开启).",
+        actions: "Owen viene travolto dalla carrozza (falso incidente). Emily timbra il foglio di via. Si aprono le scelte d'uscita (Finali 1, 2, 3, 4)."
+      },
+      end1: {
+        title: "Finale NO: 1 — 旅途 (Il Viaggio)",
+        badge: "Finale Solitario",
+        desc: "Kak non sceglie alcun compagno, supera la guardia al cancello ed esplora il mondo da solo.",
+        items: "Permesso timbrato da Emily (Switch 142 ON).",
+        switches: "Switch 148 (一个人结局).",
+        actions: "Parla con la guardia al varco senza aver ingaggiato Sain, Vigas o Rute."
+      },
+      end2: {
+        title: "Finale NO: 2 — 军旅生涯 (Carriera Militare)",
+        badge: "Route Sain",
+        desc: "Kak si unisce alle truppe di Sain come soldato e compagno romantico a tempo indeterminato.",
+        items: "Dichiarazione reciproca d'amore.",
+        switches: "Switch 144 (军官结局).",
+        actions: "Parla con Sain all'uscita/accampamento prima di lasciare il borgo."
+      },
+      end3: {
+        title: "Finale NO: 3 — 故乡 (Città Natale / Casa)",
+        badge: "Route Rute",
+        desc: "Kak decide di rinunciare a viaggiare e vive stabilmente nella bottega con il fabbro Rute come suo apprendista e sposo.",
+        items: "Anello della foresta donato in precedenza.",
+        switches: "Switch 146 & 147 (铁匠结局).",
+        actions: "Ottenuto il permesso d'uscita, torna alla bottega e accetta la convivenza con Rute."
+      },
+      end4: {
+        title: "Finale NO: 4 — 冒险者的梦 (Il Sogno dell'Avventuriero)",
+        badge: "Route Vigas",
+        desc: "Kak sale sul carro di Vigas e della sorella guarita Fenner per esplorare il continente come avventurieri.",
+        items: "Fenner guarita con le 2 felci viola.",
+        switches: "Switch 145 (拳师结局).",
+        actions: "Parla con Vigas al carro situato a nord di Wave Town prima di partire."
+      },
+      end5: {
+        title: "Finale NO: 5 — 湮灭 (Annientamento)",
+        badge: "Bad Ending",
+        desc: "Il demone distrugge Kak e l'intera Wave Town. Nessuno si salva.",
+        items: "Tutte e 3 le opzioni R18-G attive.",
+        switches: "Switch 140 -> 149 -> 150.",
+        actions: "Sottometti tutti e 3 i pretendenti con la violenza demoniaca."
+      },
+      end6: {
+        title: "Finale NO: 6 — 升华 (Ascensione / Sublimazione)",
+        badge: "True / Secret Ending",
+        desc: "Kak entra nel Santuario degli Elfi Sacri, espelle Valembert e ascende alle stelle come spirito cosmico.",
+        items: "Esplora Miniera -> Grotte di Ghiaccio -> Portale segreto Mappa 018.",
+        switches: "Switch 151 (恶魔被逼出来), Switch 152 (卡克加入圣精灵), Switch 153 (升华结局).",
+        actions: "Supera il monito del demone a Map 018 ed esegui il rituale con Fenina a Map 085."
+      }
+    };
+
+    function showNodeDetails(nodeKey) {
+      const data = nodeDetailsData[nodeKey];
+      if (!data) return;
+      const drawer = document.getElementById('node-details');
+      const content = document.getElementById('node-details-content');
+
+      content.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem;">
+          <h3 style="color:#fff; font-size:1.2rem; font-family:'Cinzel',serif;">${data.title}</h3>
+          <span class="card-badge badge-romance">${data.badge}</span>
+        </div>
+        <p style="color:#cbd5e1; font-size:0.9rem; margin-bottom:0.8rem;">${data.desc}</p>
+        <div style="font-size:0.85rem; line-height:1.7; background:rgba(0,0,0,0.3); padding:0.8rem; border-radius:8px;">
+          <div><strong style="color:var(--gold);">📦 Oggetti Richiesti:</strong> ${data.items}</div>
+          <div><strong style="color:var(--accent-blue);">⚙️ Switch Chiave:</strong> ${data.switches}</div>
+          <div style="margin-top:0.4rem;"><strong style="color:#4ade80;">🎯 Azioni da Svolgere:</strong> ${data.actions}</div>
+        </div>
+      `;
+      drawer.classList.add('open');
+      drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // SWITCH TAB
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // CALCULATOR LOGIC
+    function calculateRoute() {
+      const rute = document.querySelector('input[name="calc_rute"]:checked').value;
+      const sain = document.querySelector('input[name="calc_sain"]:checked').value;
+      const vigas = document.querySelector('input[name="calc_vigas"]:checked').value;
+      const cave = document.querySelector('input[name="calc_cave"]:checked').value;
+      const exit = document.querySelector('input[name="calc_exit"]:checked').value;
+
+      const resBox = document.getElementById('calc-result-display');
+
+      // PRIORITÀ 1: PORTALE SEGRETO DELLE GROTTE
+      if (cave === 'yes') {
+        resBox.innerHTML = `
+          <div class="calc-result-badge badge-secret">FINALE SEGRETO DIRETTO</div>
+          <div class="calc-result-title" style="color:#c084fc;">NO: 6 — 升华 (Ascensione / Sublimazione)</div>
+          <p style="color:#cbd5e1; font-size:0.9rem; margin-bottom:0.8rem;">
+            Entrando nel portale segreto sul fondo della Grotta di Ghiaccio (Mappa 018), hai scavalcato l'intero patto con Valembert! La sacerdotessa <strong>Fenina (菲尼娜)</strong> espelle il parassita dal tuo corpo, imprigiona Valembert nella torre sacra e ti trasforma in un essere stellare immortale.
+          </p>
+          <div style="font-size:0.85rem; color:var(--text-muted);">
+            <strong>Switch attivati:</strong> Switch 151 (Demone espulso), Switch 152 (Ingresso negli Elfi Sacri), Switch 153 (Finale 6).
+          </div>
+        `;
+        return;
+      }
+
+      // PRIORITÀ 2: BAD ENDING DEL DEMONE (TUTTI E 3 R18G)
+      if (rute === 'bad' && sain === 'bad' && vigas === 'bad') {
+        resBox.innerHTML = `
+          <div class="calc-result-badge badge-bad">BAD ENDING ATTIVATA</div>
+          <div class="calc-result-title" style="color:#f87171;">NO: 5 — 湮灭 (Annientamento / Oblio)</div>
+          <p style="color:#cbd5e1; font-size:0.9rem; margin-bottom:0.8rem;">
+            ⚠️ <strong>Catastrofe inevitabile:</strong> Avendo ceduto alla via oscura e crudele (R18G) con <strong>tutti e tre gli uomini</strong>, Valembert assorbe il picco supremo di sadismo ed energia lussuriosa. Nel seminterrato rivela la sua vera identità di Arcidemone (Asmodeus + Samael), rade al suolo Wave Town e sbrana Kak.
+          </p>
+          <div style="font-size:0.85rem; color:#fca5a5;">
+            <strong>Flag:</strong> Switch 11 ON, Switch 57 ON, Switch 86 ON → Switch 140 (Bad Ending) = ON.
+          </div>
+        `;
+        return;
+      }
+
+      // PRIORITÀ 3: FINALI NORMALI (Owen resuscitato ed espatrio)
+      let endingTitle = "";
+      let endingBadge = "";
+      let endingDesc = "";
+      let endingSwitch = "";
+
+      if (exit === 'sain') {
+        endingTitle = "NO: 2 — 军旅生涯 (Carriera Militare)";
+        endingBadge = "badge-romance";
+        endingDesc = "Parti con l'ufficiale Sain e l'esercito reale come soldato e suo compagno d'armi e di vita.";
+        endingSwitch = "Switch 144 (军官结局) ON";
+      } else if (exit === 'vigas') {
+        endingTitle = "NO: 4 — 冒险者的梦 (Il Sogno dell'Avventuriero)";
+        endingBadge = "badge-romance";
+        endingDesc = "Sali sul carro da viaggio con il pugile Vigas e sua sorella guarita Fenner per esplorare il mondo.";
+        endingSwitch = "Switch 145 (拳师结局) ON";
+      } else if (exit === 'rute') {
+        endingTitle = "NO: 3 — 故乡 (Città Natale / Casa)";
+        endingBadge = "badge-romance";
+        endingDesc = "Rinunci a partire: rimani per sempre a Wave Town nella bottega di Rute come suo apprendista e marito.";
+        endingSwitch = "Switch 146 & 147 (铁匠结局) ON";
+      } else {
+        endingTitle = "NO: 1 — 旅途 (Il Viaggio)";
+        endingBadge = "badge-alone";
+        endingDesc = "Non scegli nessuno dei pretendenti: superi il cancello di Wave Town e viaggi per il mondo in solitaria.";
+        endingSwitch = "Switch 148 (一个人结局) ON";
+      }
+
+      resBox.innerHTML = `
+        <div class="calc-result-badge ${endingBadge}">FINALE CALCOLATO</div>
+        <div class="calc-result-title">${endingTitle}</div>
+        <p style="color:#cbd5e1; font-size:0.9rem; margin-bottom:0.8rem;">${endingDesc}</p>
+        <div style="font-size:0.85rem; color:var(--text-muted);">
+          <strong>Resurrezione Owen:</strong> Riuscita con falso incidente (Switch 141 & 142 ON) • <strong>Flag Finale:</strong> ${endingSwitch}
+        </div>
+      `;
+    }
+
+    // SWITCHES DATABASE
+    const switchesData = [
+      { id: 1, cn: "恶魔降临", it: "Il demone Valembert appare nel seminterrato", type: "Prologo" },
+      { id: 6, cn: "欧文修之死", it: "Morte dello zio Owenxiu (inizio raccolta seme)", type: "Trama" },
+      { id: 8, cn: "学习了魅惑术", it: "Kak apprende la magia di fascinazione", type: "Abilità" },
+      { id: 9, cn: "诱惑铁匠失败", it: "Fallimento fascinazione su Rute (difesa emotiva)", type: "Rute" },
+      { id: 11, cn: "截肢铁匠", it: "R18G: Fabbro Rute amputato dei 4 arti", type: "R18G Rute" },
+      { id: 13, cn: "攻略铁匠线", it: "Avvio percorso romantico con Rute", type: "Rute" },
+      { id: 19, cn: "诱惑铁匠成功", it: "Fascinazione riuscita su Rute dopo l'anello", type: "Rute" },
+      { id: 21, cn: "桂花酒寻找开启", it: "Apertura quest del Vino di Osmanto", type: "Quest" },
+      { id: 25, cn: "和塞恩的第一次见面", it: "Primo incontro con l'ufficiale Sain al campo", type: "Sain" },
+      { id: 35, cn: "军队财政危机事件触发", it: "Attivazione crisi finanziaria dell'esercito", type: "Sain" },
+      { id: 43, cn: "任务：4000G", it: "Obiettivo: raccogliere 4000G per Sain", type: "Quest" },
+      { id: 45, cn: "和塞恩第一次做爱", it: "Primo rapporto intimo con Sain", type: "Sain" },
+      { id: 57, cn: "塞恩变成军犬", it: "R18G: Sain trasformato in cane da guardia nel seminterrato", type: "R18G Sain" },
+      { id: 70, cn: "女妖村庄开门", it: "Accesso al Villaggio delle Streghe / Bosco Sussurri", type: "Quest" },
+      { id: 79, cn: "帮军官解毒", it: "Purificazione del veleno di Sain dalla strega", type: "Sain" },
+      { id: 82, cn: "和塞恩表白", it: "Confessione reciproca con Sain", type: "Sain" },
+      { id: 86, cn: "维格斯被触手抓住", it: "R18G: Vigas catturato dai tentacoli parassiti", type: "R18G Vigas" },
+      { id: 103, cn: "任务：第一个紫苏灵蕨", it: "Quest: prima pianta di felce viola per Fenner", type: "Vigas" },
+      { id: 109, cn: "给维格斯摸了史莱姆", it: "Massaggio intimo con slime a Vigas", type: "Vigas" },
+      { id: 126, cn: "得到第二株紫苏灵蕨", it: "Ottenuta la seconda felce viola nel castello elfico", type: "Vigas" },
+      { id: 131, cn: "芬纳恢复", it: "Fenner guarisce completamente dalla malattia", type: "Vigas" },
+      { id: 137, cn: "鲁特的精液", it: "Campione di seme di Rute ottenuto (200ml)", type: "Item Seme" },
+      { id: 138, cn: "塞恩的精液", it: "Campione di seme di Sain ottenuto (200ml)", type: "Item Seme" },
+      { id: 139, cn: "维格斯的精液", it: "Campione di seme di Vigas ottenuto (200ml)", type: "Item Seme" },
+      { id: 140, cn: "恶魔坏结局", it: "Flag di attivazione Bad Ending (tutti e 3 R18G)", type: "Finale" },
+      { id: 141, cn: "欧文修复活开启", it: "Sblocco rituale di resurrezione dello zio Owen", type: "Trama" },
+      { id: 142, cn: "正常结局开启", it: "Emily timbra il foglio di via (apertura bivi finali)", type: "Finale" },
+      { id: 144, cn: "军官结局", it: "Finale NO: 2 — 军旅生涯 (Carriera con Sain)", type: "Finale" },
+      { id: 145, cn: "拳师结局", it: "Finale NO: 4 — 冒险者的梦 (Carro con Vigas)", type: "Finale" },
+      { id: 146, cn: "铁匠结局", it: "Finale NO: 3 — 故乡 (Convivenza con Rute)", type: "Finale" },
+      { id: 148, cn: "一个人结局", it: "Finale NO: 1 — 旅途 (Partenza in solitaria)", type: "Finale" },
+      { id: 149, cn: "恶魔坏结局开始", it: "Inizio sequenza distruzione demone Asmodeus/Samael", type: "Finale" },
+      { id: 151, cn: "恶魔被逼出来", it: "Fenina espelle Valembert dal corpo di Kak", type: "Ascensione" },
+      { id: 152, cn: "卡克加入圣精灵", it: "Kak accolto nella confraternita degli Elfi Sacri", type: "Ascensione" },
+      { id: 153, cn: "升华结局", it: "Finale NO: 6 — 升华 (Ascensione celeste)", type: "Finale" }
+    ];
+
+    function renderSwitches(items) {
+      const tbody = document.getElementById('switch-tbody');
+      tbody.innerHTML = items.map(s => `
+        <tr>
+          <td><span class="code-badge">#${s.id}</span></td>
+          <td style="font-weight:600; color:#fff;">${s.cn}</td>
+          <td>${s.it}</td>
+          <td><span class="card-badge ${s.type.includes('R18G') || s.type.includes('Bad') ? 'badge-bad' : s.type.includes('Ascensione') ? 'badge-secret' : 'badge-romance'}">${s.type}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function filterSwitches() {
+      const query = document.getElementById('switch-search').value.toLowerCase();
+      const filtered = switchesData.filter(s => 
+        s.id.toString().includes(query) ||
+        s.cn.toLowerCase().includes(query) ||
+        s.it.toLowerCase().includes(query) ||
+        s.type.toLowerCase().includes(query)
+      );
+      renderSwitches(filtered);
+    }
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateRoute();
+      renderSwitches(switchesData);
+    });
+  </script>
+</body>
+</html>
